@@ -227,6 +227,28 @@ class Util_WpFile {
 	}
 
 	/**
+	 * Checks if file exists
+	 *
+	 * @since 2.1.8
+	 *
+	 * @param string  $filename path to file
+	 * @throws Util_WpFile_FilesystemOperationException
+	 * @return boolean
+	 */
+	static public function file_exists( $filename ) {
+		try {
+			self::request_filesystem_credentials();
+		} catch ( Util_WpFile_FilesystemOperationException $ex ) {
+			throw new Util_WpFile_FilesystemOperationException( $ex->getMessage(),
+				$ex->credentials_form() );
+		}
+
+		global $wp_filesystem;
+
+		return $wp_filesystem->exists( $filename );
+	}
+
+	/**
 	 * Get WordPress filesystems credentials. Required for WP filesystem usage.
 	 *
 	 * @param string  $method  Which method to use when creating
@@ -240,6 +262,9 @@ class Util_WpFile {
 			$url = $_SERVER['REQUEST_URI'];
 		$url = preg_replace( "/&w3tc_note=([^&]+)/", '', $url );
 
+		// Ensure request_filesystem_credentials() is available.
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/template.php';
 
 		$success = true;
 		ob_start();
@@ -281,6 +306,10 @@ class Util_WpFile {
 	 */
 	static private function get_filesystem_credentials_form( $method = '', $url = '',
 		$context = false ) {
+		// Ensure request_filesystem_credentials() is available.
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/template.php';
+
 		ob_start();
 		// If first check failed try again and show error message
 		request_filesystem_credentials( $url, $method, true, false, array() );

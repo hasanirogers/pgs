@@ -17,7 +17,7 @@ echo sprintf( 'The plugin is currently %1$s If an option is disabled it means th
 		<?php Util_Ui::postbox_header( __( 'General', 'w3-total-cache' ), '' ); ?>
 		<table class="form-table">
 			<tr>
-				<th>Preview mode:</th>
+				<th><?php _e( 'Preview mode:', 'w3-total-cache' ); ?></th>
 				<td>
 					<?php echo Util_Ui::nonce_field( 'w3tc' ); ?>
 					<?php if ( $this->_config->is_preview() ): ?>
@@ -126,40 +126,67 @@ Util_Ui::config_overloading_button( array(
 		'key' => 'minify.configuration_overloaded'
 	) );
 ?>
-		<p><?php w3tc_e( 'minify.general.header', 'Reduce load time by decreasing the size and number of <acronym title="Cascading Style Sheet">CSS</acronym> and <acronym title="JavaScript">JS</acronym> files. Automatically remove unncessary data from <acronym title="Cascading Style Sheet">CSS</acronym>, <acronym title="JavaScript">JS</acronym>, feed, page and post <acronym title="Hypertext Markup Language">HTML</acronym>.' ) ?></p>
-
+		<p><?php w3tc_e( 'minify.general.header', 'Reduce load time by decreasing the size and number of <acronym title="Cascading Style Sheet">CSS</acronym> and <acronym title="JavaScript">JS</acronym> files. Automatically remove unnecessary data from <acronym title="Cascading Style Sheet">CSS</acronym>, <acronym title="JavaScript">JS</acronym>, feed, page and post <acronym title="Hypertext Markup Language">HTML</acronym>.' ) ?></p>
+		
 		<table class="form-table">
 			<?php
-Util_Ui::config_item( array(
-		'key' => 'minify.enabled',
-		'control' => 'checkbox',
+Util_Ui::config_item(
+	array(
+		'key'            => 'minify.enabled',
+		'control'        => 'checkbox',
 		'checkbox_label' => __( 'Enable', 'w3-total-cache' ),
-		'description' => __( 'Minification can decrease file size of <acronym title="Hypertext Markup Language">HTML</acronym>, <acronym title="Cascading Style Sheet">CSS</acronym>, <acronym title="JavaScript">JS</acronym> and feeds respectively by ~10% on average.', 'w3-total-cache' )
-	) );
-Util_Ui::config_item( array(
-		'key' => 'minify.auto',
-		'value' => ( $this->_config->get_boolean( 'minify.auto' ) ? 1 : 0 ),
-		'control' => 'radiogroup',
+		'description'    => __( 'Minification can decrease file size of <acronym title="Hypertext Markup Language">HTML</acronym>, <acronym title="Cascading Style Sheet">CSS</acronym>, <acronym title="JavaScript">JS</acronym> and feeds respectively by ~10% on average.', 'w3-total-cache' ),
+		'control_after'  => ' <a class="w3tc-control-after" target="_blank" href="https://www.boldgrid.com/support/w3-total-cache/w3-total-cache-minify-faq/?utm_source=w3tc&utm_medium=learn_more_links&utm_campaign=minify_faq" title="' .
+			__('Minify frequently asked questions', 'w3-total-cache' ) . '">' . __( 'Learn more', 'w3-total-cache' ) .
+			'<span class="dashicons dashicons-external"></span></a>',
+	)
+);
+
+Util_Ui::config_item(
+	array(
+		'key'               => 'minify.auto',
+		'value'             => ( $this->_config->get_boolean( 'minify.auto' ) ? 1 : 0 ),
+		'control'           => 'radiogroup',
 		'radiogroup_values' => array(
 			'1' => __( 'Auto', 'w3-total-cache' ),
-			'0' => __( 'Manual', 'w3-total-cache' )
+			'0' => __( 'Manual', 'w3-total-cache' ),
 		),
-		'description' => __( 'Select manual mode to use fields on the minify settings tab to specify files to be minified, otherwise files will be minified automatically.', 'w3-total-cache' )
-	) );
-Util_Ui::config_item_engine( array(
-		'key' => 'minify.engine'
-	) );
-Util_Ui::config_item( array(
-		'key' => 'minify.html.engine',
-		'control' => 'selectbox',
+		'description'       => __(
+			'Select manual mode to use fields on the minify settings tab to specify files to be minified, otherwise files will be minified automatically.',
+			'w3-total-cache'
+		),
+		'control_after'     => ' <a class="w3tc-control-after" target="_blank" href="https://www.boldgrid.com/support/w3-total-cache/how-to-use-manual-minify-for-css-and-js/?utm_source=w3tc&utm_medium=learn_more_links&utm_campaign=manual_minify#difference-between-auto-and-manual-minify" title="'
+			. __( 'How to use manual minify', 'w3-total-cache' ) . '">' . __( 'Learn more', 'w3-total-cache' ) .
+			'<span class="dashicons dashicons-external"></span></a>',
+	)
+);
+
+Util_Ui::config_item_engine(
+	array(
+		'key'           => 'minify.engine',
+		'control_after' => ' <a class="w3tc-control-after" target="_blank" href="https://www.boldgrid.com/support/w3-total-cache/choosing-a-minification-method-for-w3-total-cache/?utm_source=w3tc&utm_medium=learn_more_links&utm_campaign=minify_engine" title="' .
+			__('Choosing a minification method', 'w3-total-cache' ) . '">' . __( 'Learn more', 'w3-total-cache' ) .
+			'<span class="dashicons dashicons-external"></span></a>',
+	)
+);
+
+Util_Ui::config_item(
+	array(
+		'key'              => 'minify.html.engine',
+		'control'          => 'selectbox',
 		'selectbox_values' => array(
-			'html' => __( 'Minify (default)', 'w3-total-cache' ),
+			'html'     => __( 'Minify (default)', 'w3-total-cache' ),
 			'htmltidy' => array(
 				'disabled' => !Util_Installed::tidy(),
-				'label' => __( 'HTML Tidy', 'w3-total-cache' )
-			)
-		)
-	) );
+				'label'    => __( 'HTML Tidy', 'w3-total-cache' ),
+			),
+		),
+		'control_after'     => ' <a class="w3tc-control-after" target="_blank" href="https://www.boldgrid.com/support/w3-total-cache/minify/html-minify-or-tidy/?utm_source=w3tc&utm_medium=learn_more_links&utm_campaign=minify_html#minify-default" title="' .
+			__('How to use minify HTML', 'w3-total-cache' ) . '">' . __( 'Learn more', 'w3-total-cache' ) .
+			'<span class="dashicons dashicons-external"></span></a>',
+	)
+);
+
 Util_Ui::config_item( array(
 		'key' => 'minify.js.engine',
 		'control' => 'selectbox',
@@ -329,7 +356,7 @@ Util_Ui::button_config_save( 'general_varnish',
 		<?php if ( $is_pro ): ?>
 		<?php Util_Ui::postbox_header( 'Message Bus', '', 'amazon_sns' ); ?>
 		<p>
-			Allows policy management to be shared between a dynamic pool of servers. For example, each server in a pool to use opcode caching (which is not a shared resource) and purging is then syncronized between any number of servers in real-time; each server therefore behaves identically even though resources are not shared.
+			<?php _e( 'Allows policy management to be shared between a dynamic pool of servers. For example, each server in a pool to use opcode caching (which is not a shared resource) and purging is then syncronized between any number of servers in real-time; each server therefore behaves identically even though resources are not shared.', 'w3-total-cache' ); ?>
 		</p>
 		<table class="form-table">
 			<tr>
@@ -481,13 +508,36 @@ Util_Ui::config_item( array(
 				</th>
 			</tr>
 			<?php
-Util_Ui::config_item( array(
-		'key' => 'common.track_usage',
-		'control' => 'checkbox',
-		'checkbox_label' => __( 'Anonymously track usage to improve product quality', 'w3-total-cache' ),
-		'label_class' => 'w3tc_single_column'
-	) );
-?>
+
+				Util_Ui::config_item(
+					array(
+						'key'            => 'docroot_fix.enable',
+						'control'        => 'checkbox',
+						'checkbox_label' => __( 'Fix document root path', 'w3-total-cache' ),
+						'label_class'    => 'w3tc_single_column',
+						'description'    => sprintf(
+							// translators: 1: WordPress ABSPATH value, 2: Server document root value.
+							__( 'Fix incorrect server document root path.  Uses the WordPress ABSPATH ("%1$s") in place of the current server document root ("%2$s").', 'w3-total-cache' ),
+							esc_html( untrailingslashit( ABSPATH ) ),
+							esc_html( $_SERVER['DOCUMENT_ROOT'] )
+						),
+					)
+				);
+
+				Util_Ui::config_item( array(
+					'key' => 'common.track_usage',
+					'control' => 'checkbox',
+					'checkbox_label' => __( 'Anonymously track usage to improve product quality', 'w3-total-cache' ),
+					'label_class' => 'w3tc_single_column'
+				) );
+
+				Util_Ui::config_item( array(
+					'key' => 'robots_block.enable',
+					'control' => 'checkbox',
+					'checkbox_label' => __( 'Enable robots.txt blocking for cache directory', 'w3-total-cache' ),
+					'label_class' => 'w3tc_single_column'
+				) );
+			?>
 		</table>
 
 		<?php Util_Ui::button_config_save( 'general_misc' ); ?>
@@ -517,6 +567,8 @@ Util_Ui::config_item( array(
 					<p class="description"><?php _e( 'If selected, detailed caching information will appear at the end of each page in a <acronym title="Hypertext Markup Language">HTML</acronym> comment. View a page\'s source code to review.', 'w3-total-cache' ); ?></p>
 				</td>
 			</tr>
+		</table>
+		<table class="<?php echo esc_attr( Util_Ui::table_class() ); ?>">
 			<tr>
 				<th><?php _e( 'Purge Logs:', 'w3-total-cache' ); ?></th>
 				<td>
@@ -547,7 +599,7 @@ Util_Ui::config_item( array(
 					\W3TC\Util_Ui::pro_wrap_description(
 						__( 'Purge Logs provide information on when your cache has been purged and what triggered it.', 'w3-total-cache' ),
 						array(
-							__( 'If you are troubleshooting a complex issue in which you are not sure why your cache is being cleared, Purge Logs can tell you why', 'w3-total-cache' )
+							__( 'Sometimes, you\'ll encounter a complex issue involving your cache being purged for an unknown reason. The Purge Logs functionality can help you easily resolve those issues.', 'w3-total-cache' )
 						),
 						'general-purge-log'
 					);
