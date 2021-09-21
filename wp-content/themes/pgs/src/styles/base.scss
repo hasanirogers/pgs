@@ -1,0 +1,58 @@
+@use 'include-media/dist/_include-media.scss' as *;
+
+:root {
+  --color-rich-white: #fafafa;
+  --color-gray: #7a7a79;
+  --color-dark-gray: #363839;
+  --color-darker-gray: #1f2021;
+  --color-black: #000;
+  --color-red: #b70c28;
+  --page-width: 1170px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-red);
+  transition: color 300ms ease;
+}
+
+a:hover {
+  color: var(--color-black);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: Raleway, sans-serif;
+}
+
+kemet-drawer > [slot='content'] {
+  display: grid;
+  grid-template-rows: 52px 200px 1fr auto;
+}
+
+// TODO: consider these changes to happen in the library
+// NOTE: the 100vh will effect the docs
+// kemet-drawer::part(container) {
+//   overflow-y: auto;
+//   overflow-x: hidden;
+// }
+
+kemet-drawer::part(pusher) {
+  min-height: 100vh;
+  height: auto;
+  overflow: hidden;
+}
