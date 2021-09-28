@@ -8,7 +8,11 @@
     <section slot="content">
       <?php get_header(); ?>
       <main>
-        <p>This is the front page.</p>
+        <pgs-masthead></pgs-masthead>
+        <pgs-services></pgs-services>
+        <?php get_template_part('inc/template-parts/delivering'); ?>
+        <?php get_template_part('inc/template-parts/commitment'); ?>
+        <?php get_template_part('inc/template-parts/satisfaction'); ?>
       </main>
       <?php get_footer(); ?>
     </section>

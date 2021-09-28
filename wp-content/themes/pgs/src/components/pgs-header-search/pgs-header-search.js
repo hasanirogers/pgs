@@ -21,10 +21,13 @@ export class PGSHeaderSearch extends LitElement {
 
         :host([expanded]) button {
           margin-left: 1rem;
-          font-weight: bold;
+          font-weight: 500;
           font-size: 0.9rem;
-          padding: 0.3rem;
+          padding: 0.4rem 0.75rem;
           border: 2px solid var(--color-rich-white);
+          border-radius: 6px;
+          background: var(--color-rich-white);
+          color: var(--color-red);
         }
 
         form {

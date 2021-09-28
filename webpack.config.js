@@ -62,7 +62,7 @@ module.exports = {
   context: __dirname,
 
   entry: [
-    // 'regenerator-runtime/runtime', // is needed for async/await
+    'regenerator-runtime/runtime', // is needed for async/await
     `${themeDirectory}/src/javascript/index.js`,
     `${themeDirectory}/src/styles/app.scss`
   ],

@@ -33,6 +33,7 @@
     ]
   },
   "dependencies": {
+    "@glidejs/glide": "^3.4.1",
     "core-js": "^3.17.3",
     "dotenv": "^10.0.0",
     "include-media": "^1.4.10",

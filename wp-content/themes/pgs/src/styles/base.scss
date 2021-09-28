@@ -37,11 +37,17 @@ h3,
 h4,
 h5 {
   font-family: Raleway, sans-serif;
+  text-rendering: optimizelegibility;
 }
 
 kemet-drawer > [slot='content'] {
   display: grid;
-  grid-template-rows: 52px 200px 1fr auto;
+  grid-template-columns: 100%;
+  grid-template-rows: 52px 100px 1fr auto;
+
+  @include media('>tablet') {
+    grid-template-rows: 52px 200px 1fr auto;
+  }
 }
 
 // TODO: consider these changes to happen in the library

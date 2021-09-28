@@ -1,5 +1,8 @@
 {
   "extends": "stylelint-config-sass-guidelines",
+  "ignoreFiles": [
+    "wp-content/themes/**/*.js"
+  ],
   "rules": {
     "order/properties-alphabetical-order": null
   }

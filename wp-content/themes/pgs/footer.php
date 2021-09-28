@@ -23,18 +23,20 @@
     </div>
     <div>
       <h3><span>Contact</span></h3>
-      <div><strong>Precision Global Systems</strong></div>
-      <div>
-        <kemet-icon set="bootstrap" icon="geo-alt" size="16"></kemet-icon>
-        1600 East Big Beaver Road, Troy, MI 48083
-      </div>
-      <div>
-        <kemet-icon set="bootstrap" icon="phone" size="16"></kemet-icon>
-        (248) 526-3800
-      </div>
-      <div>
-        <kemet-icon set="bootstrap" icon="envelope" size="16"></kemet-icon>
-        <a href="mailto:info@pgsinc.net">info@pgsinc.net</a>
+      <div class="footer__contact">
+        <div><strong>Precision Global Systems</strong></div>
+        <div>
+          <kemet-icon set="bootstrap" icon="geo-alt" size="16"></kemet-icon>
+          1600 East Big Beaver Road, Troy, MI 48083
+        </div>
+        <div>
+          <kemet-icon set="bootstrap" icon="phone" size="16"></kemet-icon>
+          (248) 526-3800
+        </div>
+        <div>
+          <kemet-icon set="bootstrap" icon="envelope" size="16"></kemet-icon>
+          <a href="mailto:info@pgsinc.net">info@pgsinc.net</a>
+        </div>
       </div>
       <h3><span>Follow Us</span></h3>
       <div class="footer__social-media">

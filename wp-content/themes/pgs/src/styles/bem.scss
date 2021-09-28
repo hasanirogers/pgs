@@ -86,24 +86,37 @@
   kemet-popover {
     --kemet-popover-gap: 0;
     --kemet-popover-width: 320px;
-    --kemet-popover-background-color: transparent;
+    --kemet-popover-background-color: var(--color-red);
+    --kemet-popover-content-offset-x: 4rem;
+    --kemet-popover-content-offset-y: 1.5rem;
 
     padding: 1rem;
   }
 
+  kemet-popover [slot='content'] {
+    background: transparent;
+  }
+
   /* stylelint-disable */
   kemet-popover[active] {
-    border: 2px solid var(--color-black);
-    border-bottom: 2px solid var(--color-red)
+    border-top: 2px solid var(--color-black);
+  }
+
+  kemet-popover[tooltip] [slot='content'] {
+    background: var(--color-red);
   }
   /* stylelint-enable */
+
+  kemet-popover::part(tooltip) {
+    bottom: calc(100% - 1.5rem);
+  }
 
   ul {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    padding: 0.25rem 1.5rem;
-    margin-top: 1rem;
+    padding: 0 1rem;
+    margin: 0;
     background-color: var(--color-red);
   }
 
@@ -113,7 +126,7 @@
   }
 
   li:not(:last-child) {
-    border-bottom: 1px solid var(--color-black);
+    border-bottom: 1px solid var(--color-rich-white);
   }
 
   ul a {
@@ -121,6 +134,11 @@
     width: 100%;
     text-decoration: none;
     color: var(--color-rich-white);
+    transition: color 300ms ease;
+  }
+
+  ul a:hover {
+    color: var(--color-black);
   }
 }
 
@@ -178,6 +196,10 @@
   &__certifications li:not(:last-child) {
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--color-gray);
+  }
+
+  &__contact {
+    line-height: 2;
   }
 
   &__social-media {
@@ -279,3 +301,125 @@
   }
 }
 
+.delivering {
+  padding: 2rem;
+  margin: auto;
+  max-width: var(--page-width);
+
+  > p {
+    max-width: 840px;
+    margin: auto;
+    color: var(--color-gray);
+  }
+
+  h2,
+  > p {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h2::after {
+    content: ' ';
+    display: block;
+    margin: 2rem auto;
+    width: 50%;
+    border-bottom: 1px solid var(--color-gray);
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: 200;
+  }
+
+  &__grid {
+    color: var(--color-gray);
+    display: grid;
+    margin-top: 1rem;
+    grid-template-columns: 1fr;
+
+    @include media('>tablet') {
+      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.commitment {
+  color: var(--color-rich-white);
+  text-align: center;
+  padding: 4rem 2rem;
+  text-shadow: 1px 1px var(--color-black);
+  background-position: center;
+  background-image: url('../../images/pictures/facilities.jpg');
+
+  p {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+
+  h2::after {
+    content: ' ';
+    display: block;
+    width: 50%;
+    margin: 2rem auto;
+    border-bottom: 1px solid var(--color-red);
+  }
+
+  > div {
+    margin: auto;
+    max-width: var(--page-width);
+  }
+
+  &__grid {
+    display: grid;
+    margin-bottom: 2rem;
+
+    @include media('>tablet') {
+      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.button {
+  color: var(--color-rich-white);
+  display: inline-block;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  border: 0;
+  background: var(--color-dark-gray);
+  transition: all 300ms ease;
+  text-shadow: none;
+
+  &:hover {
+    color: var(--color-rich-white);
+    background: var(--color-red);
+  }
+}
+
+.satisfaction {
+  color: var(--color-gray);
+  display: grid;
+  margin: auto;
+  padding: 4rem 2rem;
+  align-items: center;
+  max-width: 1440px;
+
+  @include media('>tablet') {
+    gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  h2 {
+    font-weight: 400;
+    font-size: 2rem;
+  }
+}
