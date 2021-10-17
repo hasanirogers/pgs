@@ -152,7 +152,7 @@ class PGSMasthead extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="${this.domain}/wp-content/themes/pgs/bundles/bundle.css" />
+      <link rel="stylesheet" href="${this.domain}/wp-content/themes/pgs/bundles/frontend.css" />
       <section class="glide">
         <div class="glide__track" data-glide-el="track">
           <ul class="glide__slides">

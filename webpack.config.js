@@ -15,18 +15,29 @@ const themeDirectory = resolve('wp-content/themes/pgs');
 // ---------------------
 
 const pluginConfigs = {
-  styleLint: {
-    context: './src',
-    failOnError: true
-  },
+  frontend: {
+    styleLint: {
+      context: './src',
+      failOnError: true
+    },
 
-  miniCSSExtract: {
-    filename: "bundle.css" // this is what actually get served after sass is compiled
-  },
+    miniCSSExtract: {
+      filename: "frontend.css" // this is what actually get served after sass is compiled
+    },
 
-  browserSync: {
-    files: '**/*.php', // we have to tell browserSync to reload when we change php files
-    proxy: 'http://pgsinc.local' // this address your WordPress site runs on locally
+    browserSync: {
+      files: '**/*.php', // we have to tell browserSync to reload when we change php files
+      proxy: 'http://pgsinc.local' // this address your WordPress site runs on locally
+    }
+  },
+  admin: {
+    styleLint: {
+      context: './src',
+      failOnError: true
+    },
+    miniCSSExtract: {
+      filename: 'admin.css' // this is what actually get served after sass is compiled
+    },
   }
 }
 
@@ -55,21 +66,22 @@ const loaderConfigs = {
 }
 
 
-// main export
-// -----------
+// main export configs
+// -------------------
 
-module.exports = {
+// eslint-disable-next-line prefer-object-spread
+const frontend = {
   context: __dirname,
 
   entry: [
     'regenerator-runtime/runtime', // is needed for async/await
-    `${themeDirectory}/src/javascript/index.js`,
-    `${themeDirectory}/src/styles/app.scss`
+    `${themeDirectory}/src/javascript/frontend.js`,
+    `${themeDirectory}/src/styles/frontend.scss`,
   ],
 
   output: {
     path: join(__dirname, 'wp-content/themes/pgs/bundles'),
-    filename: 'bundle.js',
+    filename: 'frontend.js',
   },
 
   module: {
@@ -90,9 +102,55 @@ module.exports = {
   devtool: 'cheap-module-source-map',
 
   plugins: [
-    new StyleLintPlugin(pluginConfigs.styleLint),
-    new MiniCssExtractPlugin(pluginConfigs.miniCSSExtract),
-    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}), // we only want to produce 1 bundle.js file
-    new BrowserSyncPlugin(pluginConfigs.browserSync, { reload: false })
+    new StyleLintPlugin(pluginConfigs.frontend.styleLint),
+    new MiniCssExtractPlugin(pluginConfigs.frontend.miniCSSExtract),
+    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}), // we only want to produce 1 file
+    new BrowserSyncPlugin(pluginConfigs.frontend.browserSync, { reload: false })
   ]
 };
+
+// eslint-disable-next-line prefer-object-spread
+const admin = {
+  context: __dirname,
+
+  entry: [
+    'regenerator-runtime/runtime', // is needed for async/await
+    `${themeDirectory}/src/javascript/admin.js`,
+    `${themeDirectory}/src/styles/admin.scss`
+  ],
+
+  output: {
+    path: join(__dirname, 'wp-content/themes/pgs/bundles'),
+    filename: 'admin.js',
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: loaderConfigs.babel
+      },
+
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: loaderConfigs.miniCSSExtract
+      }
+    ]
+  },
+
+  devtool: 'cheap-module-source-map',
+
+  plugins: [
+    new StyleLintPlugin(pluginConfigs.admin.styleLint),
+    new MiniCssExtractPlugin(pluginConfigs.admin.miniCSSExtract),
+    new webpack.optimize.LimitChunkCountPlugin({maxChunks: 1}) // we only want to produce 1 bundle.js file
+    // new BrowserSyncPlugin(pluginConfigs.browserSync, { reload: false })
+  ]
+};
+
+
+// main export
+// -----------
+
+module.exports = [frontend, admin];

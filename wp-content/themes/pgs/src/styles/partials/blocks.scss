@@ -1,0 +1,13 @@
+.page-cta {
+  min-height: 25vh;
+  background-size: 'cover';
+  background-position: 'center';
+  background-repeat: 'no-repeat';
+  background-attachment: fixed;
+}
+
+// only on frontend
+kemet-drawer .page-cta {
+  margin-left: calc(-100vw / 2 + 100% / 2);
+  margin-right: calc(-100vw / 2 + 100% / 2);
+}
