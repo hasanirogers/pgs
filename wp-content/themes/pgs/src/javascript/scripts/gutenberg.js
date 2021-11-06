@@ -1,5 +1,8 @@
+// Reference: https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components
+// Reference: https://www.youtube.com/playlist?list=PLriKzYyLb28lHhftzU7Z_DJ32mvLy4KKH
+
 const { registerBlockType } = wp.blocks;
-const { RichText, InspectorControls, ColorPalette, MediaUpload } = wp.editor;
+const { RichText, InspectorControls, ColorPalette, MediaUpload, URLInput } = wp.editor;
 const { PanelBody, IconButton } = wp.components;
 
 
@@ -11,6 +14,10 @@ registerBlockType('pgs/page-cta', {
 
   // custom attributes
   attributes: {
+    url: {
+      type: 'string',
+      default: ''
+    },
     title: {
       type: 'string',
       source: 'html',
@@ -37,6 +44,7 @@ registerBlockType('pgs/page-cta', {
 
   edit({ attributes, setAttributes }) {
     const {
+        url,
         title,
         body,
         titleColor,
@@ -67,6 +75,12 @@ registerBlockType('pgs/page-cta', {
 
     return ([
       <InspectorControls style={ { marginBottom: '40px' } }>
+        <PanelBody title={ 'Link To' }>
+          <URLInput
+            value={ attributes.url }
+            onChange={ ( url, post ) => setAttributes( { url } ) }
+          />
+        </PanelBody>
         <PanelBody title={ 'Font Color Settings' }>
           <p><strong>Select a Title color:</strong></p>
           <ColorPalette value={ titleColor } onChange={ onTitleColorChange } />
@@ -90,29 +104,34 @@ registerBlockType('pgs/page-cta', {
           />
         </PanelBody>
       </InspectorControls>,
-      <div class="page-cta" style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <RichText
-          key="editable"
-          tagName="h2"
-          placeholder="Your CTA Title"
-          value={ title }
-          onChange={ onChangeTitle }
-          style={{ color: titleColor }}
-        />
-        <RichText
-          key="editable"
-          tagName="p"
-          placeholder="Your CTA Description"
-          value={ body }
-          onChange={ onChangeBody }
-          style={{ color: bodyColor }}
-        />
+      <div className={`page-cta ${backgroundImage ? 'page-cta--has-background' : 'page-cta--no-background'}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div class="page-cta__container">
+          <RichText
+            key="editable"
+            tagName="h2"
+            placeholder="Your CTA Title"
+            value={ title }
+            onChange={ onChangeTitle }
+            style={{ color: titleColor }}
+          />
+          <RichText
+            key="editable"
+            tagName="p"
+            placeholder="Your CTA Description"
+            value={ body }
+            onChange={ onChangeBody }
+            style={{ color: bodyColor }}
+          />
+          <a href={ url } class="button">Read More</a>
+        </div>
+
       </div>
     ]);
   },
 
   save({ attributes }) {
     const {
+      url,
       title,
       body,
       titleColor,
@@ -121,9 +140,12 @@ registerBlockType('pgs/page-cta', {
     } = attributes;
 
     return (
-      <div class="page-cta" style={{ backgroundImage: `url(${backgroundImage})` }}>
-        <h2 style={{ color: titleColor }}>{ title }</h2>
-        <RichText.Content tagName="p" value={ body } style={{ color: bodyColor }} />
+      <div className={`page-cta ${backgroundImage ? 'page-cta--has-background' : 'page-cta--no-background'}`} style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div class="page-cta__container">
+          <h2 style={{ color: titleColor }}>{ title }</h2>
+          <RichText.Content tagName="p" value={ body } style={{ color: bodyColor }} />
+          <a href={ url } class="button">Read More</a>
+        </div>
       </div>
     );
   }
