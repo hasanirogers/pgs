@@ -1,14 +1,8 @@
-const { resolve, join } = require('path');
+const { join } = require('path');
 const webpack = require('webpack');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
-
-// directories
-// -----------
-
-const themeDirectory = resolve('wp-content/themes/pgs');
 
 
 // configuration options
@@ -75,12 +69,12 @@ const frontend = {
 
   entry: [
     'regenerator-runtime/runtime', // is needed for async/await
-    `${themeDirectory}/src/javascript/frontend.js`,
-    `${themeDirectory}/src/styles/frontend.scss`,
+    `./src/javascript/frontend.js`,
+    `./src/styles/frontend.scss`,
   ],
 
   output: {
-    path: join(__dirname, 'wp-content/themes/pgs/bundles'),
+    path: join(__dirname, './bundles'),
     filename: 'frontend.js',
   },
 
@@ -115,12 +109,12 @@ const admin = {
 
   entry: [
     'regenerator-runtime/runtime', // is needed for async/await
-    `${themeDirectory}/src/javascript/admin.js`,
-    `${themeDirectory}/src/styles/admin.scss`
+    `./src/javascript/admin.js`,
+    `./src/styles/admin.scss`
   ],
 
   output: {
-    path: join(__dirname, 'wp-content/themes/pgs/bundles'),
+    path: join(__dirname, './bundles'),
     filename: 'admin.js',
   },
 

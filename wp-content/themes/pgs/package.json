@@ -7,9 +7,9 @@
     "start": "webpack --watch --mode=development",
     "build": "webpack --mode=production",
     "deploy": "node deploy.js",
-    "stylelint": "npx stylelint 'wp-content/themes/**/*.scss'",
-    "eslint": "eslint --ext .js,.html wp-content/themes/pgs/src/** --ignore-path .gitignore",
-    "prettier": "prettier \"wp-content/themes/pages/src/**/*.js\" --check --ignore-path .gitignore"
+    "stylelint": "npx stylelint 'src/**/*.scss'",
+    "eslint": "eslint --ext .js,.html src/** --ignore-path .gitignore",
+    "prettier": "prettier \"src/**/*.js\" --check --ignore-path .gitignore"
   },
   "author": "Hasani Rogers <hasani.rogers@gmail.com>",
   "license": "ISC",
