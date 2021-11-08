@@ -424,3 +424,25 @@
     font-size: 2rem;
   }
 }
+
+.contact-us {
+  display: grid;
+  gap: 2rem;
+  margin: 2rem;
+  grid-template-columns: 1fr 2fr;
+
+  > :first-child {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > :last-child {
+    display: flex;
+    justify-content: center;
+    grid-column: span 2;
+  }
+
+  textarea {
+    height: 100%;
+  }
+}
