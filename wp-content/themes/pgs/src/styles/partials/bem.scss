@@ -391,6 +391,7 @@
 }
 
 .button {
+  font-size: 1.25rem;
   color: var(--color-rich-white);
   display: inline-block;
   padding: 1rem 1.5rem;
@@ -429,7 +430,10 @@
   display: grid;
   gap: 2rem;
   margin: 2rem;
-  grid-template-columns: 1fr 2fr;
+
+  @include media('>tablet') {
+    grid-template-columns: 1fr 2fr;
+  }
 
   > :first-child {
     display: flex;
@@ -439,7 +443,10 @@
   > :last-child {
     display: flex;
     justify-content: center;
-    grid-column: span 2;
+
+    @include media('>tablet') {
+      grid-column: span 2;
+    }
   }
 
   textarea {

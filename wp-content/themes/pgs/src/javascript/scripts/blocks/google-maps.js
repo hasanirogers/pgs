@@ -20,7 +20,7 @@ registerBlockType('pgs/google-maps', {
     },
     height: {
       type: 'string',
-      default: '340px'
+      default: '480px'
     }
   },
 

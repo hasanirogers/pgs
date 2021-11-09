@@ -14,9 +14,9 @@
           'color' => '#000000'
         ),
         array(
-          'name' => 'Pink',
-          'slug' => 'pink',
-          'color' => '#ff4444'
+          'name' => 'Red',
+          'slug' => 'red',
+          'color' => '#b70c28'
         )
       )
     );
@@ -46,5 +46,6 @@
 
       register_block_type('pgs/page-cta', $args);
       register_block_type('pgs/google-maps');
+      register_block_type('pgs/page-callout');
   }
   add_action( 'init', 'pgs_gutenberg_blocks' );

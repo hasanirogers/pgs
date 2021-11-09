@@ -1,4 +1,5 @@
-.page-cta {
+.page-cta,
+.page-callout {
   display: flex;
   min-height: 400px;
   position: relative;
@@ -26,6 +27,7 @@
     font-size: 1.25rem;
     text-align: center;
     margin: 0 auto 2rem;
+    padding: 0 2rem;
   }
 
   &__container {
@@ -39,11 +41,13 @@
     z-index: 1;
   }
 
-  &.page-cta--has-background {
+  &.page-cta--has-background,
+  &.page-callout--has-background {
     text-shadow: 1px 1px var(--color-black);
   }
 
-  &.page-cta--has-background::before {
+  &.page-cta--has-background::before,
+  &.page-callout--has-background::before {
     content: '';
     display: block;
     position: absolute;
@@ -57,7 +61,8 @@
 }
 
 // only on frontend
-kemet-drawer .page-cta {
+kemet-drawer .page-cta,
+kemet-drawer .page-callout {
   margin-left: calc(-100vw / 2 + 100% / 2);
   margin-right: calc(-100vw / 2 + 100% / 2);
 }
