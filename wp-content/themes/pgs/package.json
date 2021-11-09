@@ -8,17 +8,11 @@
     "build": "webpack --mode=production",
     "deploy": "node deploy.js",
     "stylelint": "npx stylelint 'src/**/*.scss'",
-    "eslint": "eslint --ext .js,.html src/** --ignore-path .gitignore",
-    "prettier": "prettier \"src/**/*.js\" --check --ignore-path .gitignore"
+    "eslint": "eslint --ext .js,.html src/javascript/** --ignore-path ../../../.gitignore",
+    "prettier": "prettier \"src/**/*.js\" --check --ignore-path ../../../gitignore"
   },
   "author": "Hasani Rogers <hasani.rogers@gmail.com>",
   "license": "ISC",
-  "eslintConfig": {
-    "extends": [
-      "@open-wc/eslint-config",
-      "eslint-config-prettier"
-    ]
-  },
   "prettier": {
     "singleQuote": true,
     "arrowParens": "avoid"
@@ -27,12 +21,6 @@
     "> 1%",
     "last 2 versions"
   ],
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  },
   "dependencies": {
     "@glidejs/glide": "^3.4.1",
     "core-js": "^3.17.3",
@@ -41,8 +29,7 @@
     "kemet-ui": "^0.2.0",
     "lit": "^2.0.0-rc.4",
     "regenerator-runtime": "^0.13.9",
-    "sass": "^1.41.1",
-    "ssh2-sftp-client": "^7.0.4"
+    "sass": "^1.41.1"
   },
   "devDependencies": {
     "@babel/core": "7.15.0",
@@ -57,6 +44,7 @@
     "css-loader": "6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.26.1",
     "mini-css-extract-plugin": "2.2.0",
     "postcss-loader": "6.1.1",
     "prettier": "^2.3.2",

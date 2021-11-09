@@ -1,9 +1,9 @@
 // Reference: https://github.com/WordPress/gutenberg/tree/trunk/packages/block-editor/src/components
 // Reference: https://www.youtube.com/playlist?list=PLriKzYyLb28lHhftzU7Z_DJ32mvLy4KKH
 
-const { registerBlockType } = wp.blocks;
-const { RichText, InspectorControls, ColorPalette, MediaUpload, URLInput } = wp.editor;
-const { PanelBody, IconButton } = wp.components;
+const { registerBlockType } = window.wp.blocks;
+const { RichText, InspectorControls, ColorPalette, MediaUpload, URLInput } = window.wp.blockEditor;
+const { PanelBody, IconButton } = window.wp.components;
 
 
 registerBlockType('pgs/page-cta', {
@@ -74,11 +74,11 @@ registerBlockType('pgs/page-cta', {
     }
 
     return ([
-      <InspectorControls style={ { marginBottom: '40px' } }>
+      <InspectorControls style={{ marginBottom: '40px' }}>
         <PanelBody title={ 'Link To' }>
           <URLInput
             value={ attributes.url }
-            onChange={ ( url, post ) => setAttributes( { url } ) }
+            onChange={ ( newURL ) => setAttributes( { url: newURL } ) }
           />
         </PanelBody>
         <PanelBody title={ 'Font Color Settings' }>

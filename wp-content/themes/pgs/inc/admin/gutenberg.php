@@ -45,5 +45,6 @@
       );
 
       register_block_type('pgs/page-cta', $args);
+      register_block_type('pgs/google-maps');
   }
   add_action( 'init', 'pgs_gutenberg_blocks' );
