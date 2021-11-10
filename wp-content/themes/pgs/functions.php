@@ -39,6 +39,12 @@ function pgs_add_meta_tags() {
 }
 add_action('wp_head', 'pgs_add_meta_tags', '1');
 
+// title
+add_theme_support( 'title-tag' );
+
+// excerpt
+add_post_type_support( 'page', 'excerpt' );
+
 // menus
 function pgs_register_menus() {
   register_nav_menus(

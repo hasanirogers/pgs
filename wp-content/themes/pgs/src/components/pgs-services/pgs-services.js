@@ -105,7 +105,7 @@ class PGSServices extends LitElement {
             </a>
           </li>
           <li>
-            <a href="/services/component-recertification">
+            <a href="/services/component-containment">
               <span>${serviceContainment}</span>
               <strong>Recertification &amp; Containment</strong>
             </a>

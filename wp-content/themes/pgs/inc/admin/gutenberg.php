@@ -17,6 +17,21 @@
           'name' => 'Red',
           'slug' => 'red',
           'color' => '#b70c28'
+        ),
+        array(
+          'name' => 'Green',
+          'slug' => 'green',
+          'color' => '#003300'
+        ),
+        array(
+          'name' => 'Gray',
+          'slug' => 'gray',
+          'color' => '#7a7a79'
+        ),
+        array(
+          'name' => 'Dark Gray',
+          'slug' => 'dark-gray',
+          'color' => '#363839'
         )
       )
     );
@@ -46,6 +61,7 @@
 
       register_block_type('pgs/page-cta', $args);
       register_block_type('pgs/google-maps');
+      register_block_type('pgs/page-panel');
       register_block_type('pgs/page-callout');
   }
   add_action( 'init', 'pgs_gutenberg_blocks' );
