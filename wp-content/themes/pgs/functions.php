@@ -4,6 +4,7 @@
 include_once('inc/admin/gutenberg.php');
 include_once('inc/classes/header-menu-walker.php');
 include_once('inc/post-types/slides.php');
+include_once('inc/post-types/credentials.php');
 include_once('inc/meta-boxes/slider-options.php');
 include_once('inc/meta-boxes/page-options.php');
 
